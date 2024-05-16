@@ -19,7 +19,20 @@ On top of this, every security domain has a different objectively attributable t
 
 As the number of interactions and number of technologies increase, the possible attack surfaces also increase. It is unreasonable to expect users to asses the risks of the underlying platforms that they use every time that they interact with a new system.
 
+
 ## Nuff Protocol
+
+Nuff protocol addresses two of the most significant issues that cross-chain interactions are facing today, security and latency. The goal is to provide adaptable security to any interaction an actor wants to take through undewriters covering the total capital at risk. In return underwriters get a premium on the coverage that they provide based on the risk that they are taking. Through this mechanism an actor would be fully collaterized for any action that they are taking. 
+
+With full coverage of the interaction that the actors want to perform, actors do not have to wait for the objectively attributable truth to be achieved through consensus for their specific interaction. This means that at the moment that the interaction is fully collatarized on any chain, actors do not have to wait for consensus to achieve finality and move optimistically without any security risk. 
+
+This unlocks bunch of different use-cases that previously didn't provide trustlessness and low latency ;
+
+- Trustless low latency fully collaterized bridging
+- Trustless near-instant L2 <-> L1 withdrawal
+- Collaterizing consensus risk of a network with borrowed collateral from another network
+- Trustless fully collaterized intent marketplaces
+- Fully collaterized DeFi products (talk about this in detail, borrow/lend, options, futures)
 
 ### Insurance marketplace
 
