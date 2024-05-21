@@ -1,4 +1,4 @@
-# Litepaper
+Litepaper
 
 ## Introduction
 
@@ -216,3 +216,6 @@ While intent systems are evolving, users who are using these systems could be at
 
 Talk about rewards structure, tokenomics, introduction of new assets through governance
 
+
+
+## Conclusion
