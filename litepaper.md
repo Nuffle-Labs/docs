@@ -2,7 +2,7 @@
 
 # Litepaper
 
-*Authors: Firat Sertgöz, Donnovan Dall*
+*Authors: Firat Sertgöz, Donovan Dall*
 *Version: v0.1*
 ## Introduction
 
