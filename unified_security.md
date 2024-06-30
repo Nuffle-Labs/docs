@@ -17,16 +17,6 @@ With each new provider, there are new features and semantics that a higher-level
 
 This type of integration becomes a technical burden and requires technical expertise. 
 
-
-
-## Design space
-
-There are a few ways to support unified interoperability with the systems:
-
-* **Provide a common interface** for the commissioning and consumption of security attestations for all providers. This approach is likely a long-term solution; however, since we are at an early stage, it would be helpful to have room for innovation and solve problems uniquely. 
-* **Introduce a unification layer** for the agents in each security system to pool their attestations and aggregate them. This system would utilize the expertise of builders who understand the restaking paradigm and limit the burden on the external actors who want to purchase security, freeing them up to concentrate on their value generation. For operators, allowing them to become delegates means they can delegate all of their assets to a trustless operator set. Utilize account abstraction to ensure the attestation is delegated to the unification layer.
-
-
 ## The Case for Unification
 
   As the number of restaking protocols grow, the total amount of available security gets fragmented. Without unification, all participants in the restaking ecosystems will suffer from different problems. Unification provides some features we could not innovate with as a single provider. If we accept there is a need for room to experiment in isolation with application-specific use cases, this allows some interesting avenues to solve problems:
@@ -35,6 +25,14 @@ There are a few ways to support unified interoperability with the systems:
 - **Asset Variety**: An institutional operator with multiple assets usually validates many blockchain protocols. This opportunity represents that they can attest to many different systems and provide cryptoeconomic security via the unification layer. Some protocols have come to market that have supported other assets that are not canonically supported by others. This unification layer would allow node-operating businesses to delegate once, and the system can support and attest all supported assets from all restaking providers.
 - **Missed opportunity**: Blockchain protocols that do not have a native restaking layer miss out on the opportunity to provide restaked security to their builders. To access the systems, they must integrate with them cross-chain and build expertise in each restaking system they want to support. This introduces opportunity cost, risk, and auditing requirements for the protocol. With a system where native delegates lock up their stake, and operators lock their validating keys to a Smart Contract on the native chain, they can delegate to the unification layer to attest for them based on their strategy.
 - **Semantics of Restaking Protocols**: Every restaking protocol defines its interface that service providers must adapt and integrate. This creates a bottleneck in value generation since service providers want to reach their customers as soon as possible with various assets. Unifying all restaking platforms in a unification layer significantly decreases the time to market for service providers. 
+
+
+## Design space
+
+There are a few ways to support unified interoperability with the systems:
+
+* **Provide a common interface** for the commissioning and consumption of security attestations for all providers. This approach is likely a long-term solution; however, since we are at an early stage, it would be helpful to have room for innovation and solve problems uniquely. 
+* **Introduce a unification layer** for the agents in each security system to pool their attestations and aggregate them. This system would utilize the expertise of builders who understand the restaking paradigm and limit the burden on the external actors who want to purchase security, freeing them up to concentrate on their value generation. For operators, allowing them to become delegates means they can delegate all of their assets to a trustless operator set. Utilize account abstraction to ensure the attestation is delegated to the unification layer.
 
 
 ## Unified Security Layer
