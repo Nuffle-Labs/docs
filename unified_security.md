@@ -4,7 +4,7 @@
 
 *Authors: Don Dall, Firat Sertgoz*
 ## Abstract
-We are seeing a Cambrian explosion of restaked security systems pioneered by EigenLayer. These systems improve the cryptoeconomic security of protocols and applications by **facilitating the attestation from networks verifying the blockchain itself.** Each restaking provider has different semantics specific to their network. These semantics are hard to understand for the higher-level purchaser or delegate, and sometimes they are irrelevant, where services only care about borrowing security to do some productive work. 
+We are seeing a Cambrian explosion of restaked security systems pioneered by EigenLayer. These systems improve the cryptoeconomic security of protocols and applications by leveraging restaked assets. Each restaking provider has different semantics specific to their network. These semantics are hard to understand for the higher-level purchaser or delegate, and sometimes they are irrelevant, where services only care about borrowing security to do some productive work. 
 
 ![GQ7_9xbXcAEm34A](https://hackmd.io/_uploads/rklNfFY8A.jpg)
 *[Reference](https://x.com/gauntlet_xyz/status/1805662991708213452/photo/1)*
@@ -26,8 +26,10 @@ participatipants in restaking will suffer a variety of problems. Unification all
 
 - **Semantics of Restaking Protocols**: Every restaking protocol defines its interface that service providers must adapt and integrate. This creates a bottleneck in value generation since service providers want to reach their customers as soon as possible with various assets. A unification layer significantly reduces the time to market for all decentralised services. 
 
-## Unified Security Layer
-We introduce a unified security layer that enables decentralised services to leverage any crypto-economic security from any restaking platform. Services only need to provide the service binary, validation semantics of their service, and their configuration. This layer abstracts the orchestration of the services with different restaking protocols. It provides a common interface for the commissioning and consumption of security attestations for all providers. The unification layer allows for agents in each security system to pool their attestations and aggregate them. This system would utilize the expertise of builders who understand the restaking paradigm and limit the burden on the external actors who want to purchase security, freeing them up to concentrate on their value generation. For operators, allowing them to become delegates means they can delegate all of their assets to a trustless operator set. Utilize account abstraction to ensure the attestation is delegated to the unification layer.
+## The Unified Security Layer
+We introduce a unified security layer that enables decentralised services to leverage any crypto-economic security from any restaking platform. Services only need to provide the service binary, validation semantics of their service, and their configuration. This layer abstracts the orchestration of the services with different restaking protocols. It provides a common interface for the commissioning and consumption of security attestations for all providers. 
+
+The unification layer allows for agents in each security system to pool their attestations and aggregate them. This system would utilize the expertise of builders who understand the restaking paradigm and limit the burden on the external actors who want to purchase security, freeing them up to concentrate on their value generation. For operators, allowing them to become delegates means they can delegate all of their assets to a trustless operator set. They can even utilise account abstraction to ensure the attestation is delegated to the unification layer.
 
 **High-level Architecture Diagram:**
 
