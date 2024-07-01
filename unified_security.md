@@ -2,27 +2,32 @@
 
 *Authors: Don Dall, Firat Sertgoz*
 ## Abstract
-We are seeing a Cambrian explosion of restaked security systems pioneered by EigenLayer. These systems improve the cryptoeconomic security of protocols and applications by **facilitating the attestation from networks verifying the blockchain itself.** Each restaking provider has different semantics specific to their network. These semantics are hard to understand for the higher-level purchaser or delegate, and sometimes they are irrelevant, where services only care about borrowing security to do some productive work. 
+We are beginning to see a Cambrian explosion of restaked security systems pioneered by Eigenlayer. 
+
+These systems aim to improve and bolster the cryptoeconomic security of protocols and applications by facilitating the attestation from networks verifying the blockchain itself.
+
+Each restaking provider has semantics, nuances, and integration guidelines specific to their network. 
 
 ![GQ7_9xbXcAEm34A](https://hackmd.io/_uploads/rklNfFY8A.jpg)
 *[Reference](https://x.com/gauntlet_xyz/status/1805662991708213452/photo/1)*
 
-Cryptoeconomic security is already scarce. Different restaking providers across blockchains fragment cryptoeconomic security further. For restaking to become mainstream, applications need to share security subsystems, experiment with different providers, and potentially even combine the use of one provider with another to improve their cryptoeconomic security -- all depending on supported features, ecosystem alignment and appetite for risk.
+For widespread adoption to occur, we need to be able to share security subsystems, pick and experiment with providers, and potentially even join the use of one provider with another, depending on supported features, ideological alignment and appetite for risk.
 
-In this blogpost, we outline the case and the design for a unified security layer that enables service providers to leverage any crypto-economic security from any restaking platform.
+With each new provider, there are new features and semantics that a higher-level purchaser or delegate would have to understand. 
+
+This type of integration becomes a technical burden and requires technical expertise. 
 
 ## The Case for Unification
 
-The growing number of restaking protocols are fragmenting available cryptoeconomic security. Without unification,
-participatipants in restaking will suffer a variety of problems. Unification allows new features that are otherwise impossible with a single restaking provider. Unification solves for the following problems: 
+  As the number of restaking protocols grow, the total amount of available security gets fragmented. Without unification, all participants in the restaking ecosystems will suffer from different problems. Unification provides some features we could not innovate with as a single provider. If we accept there is a need for room to experiment in isolation with application-specific use cases, this allows some interesting avenues to solve problems:
+ 
+- **Not enough stake** A service could require a large amount of borrowed security from many operators. The total required stake might not be present in one restaking protocol but in multiple restaking protocols. Currently, there is no way to combine these restaking protocols; thus, services with large stake requirements cannot be onboarded.
 
-- **Not enough stake**: A service could require a large amount of borrowed security from many operators. The total required stake might not be present in one restaking protocol but might exists in multiple restaking protocols. Currently there is no way to combine these restaking protocols, thus services with large stake requirements cannot be onboarded.
+- **Stake exclusivity**: A service may require exclusivity to the slashable stake to provide economic security guarantees over a Proof-of-Custody protocol. This exclusivity requirement would be problematic since the total available security to purchase could be reduced to a single service, and the rest of the services in the restaking protocol might starve. In EigenLayer, tasks requiring stake are purchased for a finite period, and this introduces some form of 'fair use' policy, as we currently see through whitelist mechanisms. The unification layer could address this by allowing the service to divide the exclusive stake claim into multiple restaking protocols.
 
-- **Asset Variety**: An institutional operator generally has multiple native assets and are validators to many blockchain protocols. This opportunity represents that they can attest to many different systems and provide cryptoeconomic security all at once to a service. A unification layer would allow node-operating businesses to delegate once. The system, in this case, can support and attest all supported assets from all restaking providers. A service that operates in multiple chains could require different native assets to secure its service. A unification layer would allow defining multi-chain security strategies with native assets with already existing restaking protocols..
-
-- **Missed opportunity**: Blockchain protocol without a native restaking layer miss the opportunity to provide cryptoeconomic security to decentralised services. Builders need to build expertise in each restaking system they want to support. This introduces opportunity cost, risk, and auditing requirements for the protocol. A unification layer would allow native delegates to lock up their stake and operators to lock their validators to a smart contract on the native chain. They can, then, delegate to the unification layer to attest for them based on their strategy. 
-
-- **Semantics of Restaking Protocols**: Every restaking protocol defines its interface that service providers must adapt and integrate. This creates a bottleneck in value generation since service providers want to reach their customers as soon as possible with various assets. A unification layer significantly reduces the time to market for all decentralised services. 
+- **Asset Variety**: An institutional operator with multiple assets usually validates many blockchain protocols. This opportunity represents that they can attest to many different systems and provide cryptoeconomic security via the unification layer. Some protocols have come to market that have supported other assets that are not canonically supported by others. This unification layer would allow node-operating businesses to delegate once, and the system can support and attest all supported assets from all restaking providers. A service that operates in multiple chains could require different native assets to secure its service. A unification layer would allow defining multi-chain security strategies with native assets with already existing restaking protocols.
+- **Missed opportunity**: Blockchain protocols that do not have a native restaking layer miss out on the opportunity to provide restaked security to their builders. To access the systems, they must integrate with them cross-chain and build expertise in each restaking system they want to support. This introduces opportunity cost, risk, and auditing requirements for the protocol. With a system where native delegates lock up their stake, and operators lock their validating keys to a Smart Contract on the native chain, they can delegate to the unification layer to attest for them based on their strategy.
+- **Semantics of Restaking Protocols**: Every restaking protocol defines its interface that service providers must adapt and integrate. This creates a bottleneck in value generation since service providers want to reach their customers as soon as possible with various assets. Unifying all restaking platforms in a unification layer significantly decreases the time to market for service providers. 
 
 
 ## Design space
@@ -32,9 +37,12 @@ There are a few ways to support unified interoperability with the systems:
 * **Provide a common interface** for the commissioning and consumption of security attestations for all providers. This approach is likely a long-term solution; however, since we are at an early stage, it would be helpful to have room for innovation and solve problems uniquely. 
 * **Introduce a unification layer** for the agents in each security system to pool their attestations and aggregate them. This system would utilize the expertise of builders who understand the restaking paradigm and limit the burden on the external actors who want to purchase security, freeing them up to concentrate on their value generation. For operators, allowing them to become delegates means they can delegate all of their assets to a trustless operator set. Utilize account abstraction to ensure the attestation is delegated to the unification layer.
 
+
 ## Unified Security Layer
 
 We introduce a unified security layer that enables service providers to leverage any crypto-economic security from any restaking platform. Service providers only need to provide the service binary, validation semantics of their service, and their configuration. Unified security layer abstracts the orchestration of the services with different restaking protocols.
+
+
 
 **High-level Architecture Diagram:**
 
@@ -57,12 +65,12 @@ The answer to this question depends on the type of participant asking.
 
 Delegators can now delegate all their assets on one unified platform and interact in one place. There is no need to search for services and deal with operators to build trust. Operators can earn trust in a unified system, and you can transparently see an operator's reputation stake and network participation.
 
-Delegators can set adaptive strategies and have power over their assets. As the system is an open market, they can access GTM-style applications and earn the most significant yield, which is usually reserved for Genesis operators.
+Delegators can set adaptive strategies and have power over their assets. As the system is an open market, they can access applications that earn the most significant yield, which is usually reserved for Genesis operators.
 
 ### Service Providers:
 
 Due to the competitive marketplace, an application can now determine its security parameters, the tokens involved, slashing logic, and rewards, and then be at ease with it. You do not need to delve deeper into the specific platform or hire protocol engineers for each re-staking solution. 
-With this, you can set and forget it, ensure security, and continue innovating.
+With unified security layer, you can set and forget it, ensure security, and continue innovating.
 
 ### Operators:
 
@@ -91,4 +99,3 @@ Open platforms bolster innovation. In a world where a service can choose from wh
 ## What is next?
 
 Nuffle Labs is actively researching on a Unified Security Layer that would benefit the whole industry. We aim to introduce new capital oppurtunities to users and rapidly expand the innovation space for builders. Nuff' Security,  Break the silos.
-
