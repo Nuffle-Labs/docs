@@ -92,6 +92,3 @@ Open platforms bolster innovation. In a world where a service can choose from wh
 
 Nuffle Labs is actively researching on a Unified Security Layer that would benefit the whole industry. We aim to introduce new capital oppurtunities to users and rapidly expand the innovation space for builders. Nuff' Security,  Break the silos.
 
-Protocols that are new might not have enough liquidity in their ecosystem for a particular type of application and are struggling to bolster DeFI in the system. With this, protocols can now cherry-pick security from others while bootstrapping a budding DeFI space. 
-
-Current customers have to choose a restaking protocols to run their services. This creates some lock-in in terms of asset variety and restaking protocols may lose out on the opportunity. If the service providers had the choice to have strategies that would allow using multiple restaking protocols, they would commit to both to increase their service security. With Unified security we aim to remove this 'vendor lock-in' for service providers and 'opportunity cost' for restaking protocols.
