@@ -57,9 +57,11 @@ Operators are actors that opt to provide a range of services. If expenses of run
 
 There is opportunity for operators to earn additional income from their existing infrastructure. They have the option to continue running their infrastructure and deploy a few more components: 
 
-* An Application Oracle: Operators can provide this service and charge based on the number of requests. Other solo stakers may not run a service binary but still wish to act as a superdelegate.
-* A Threshold Signing Node: Operators may choose to operate a threshold node and implement various strategies based on their portfolio. They could selectively sign specific service outputs without relying on another oracle.
-* A Keyper Guardian: They might be interested in becoming a Keyper and participating in the community. Keypers ensure the system's liveness by running and signing on behalf of all services that the community has reviewed. As a Keyper, they can earn a reputation and leverage their experience and influence within the community to guide the network.
+- **An Application Oracle:** Operators can provide this service and charge based on the number of requests. Other solo stakers may not run a service binary but still wish to act as a superdelegate.
+
+- **A Threshold Signing Node:** Operators may choose to operate a threshold node and implement various strategies based on their portfolio. They could selectively sign specific service outputs without relying on another oracle.
+
+- **A Keyper Guardian:** They might be interested in becoming a Keyper and participating in the community. Keypers ensure the system's liveness by running and signing on behalf of all services that the community has reviewed. As a Keyper, they can earn a reputation and leverage their experience and influence within the community to guide the network.
 
 They can also now use their other nodes' validator stake to participate in restaking subsystems. Keypers could delegate their Cardano Withdrawal Certificate to shared security, and we can bolster additional systems while continuing to stack yield. 
 
