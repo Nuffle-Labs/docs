@@ -74,24 +74,30 @@ flowchart TD
     end
     
     %% Dealer and Operator flow
-    SourceOperatorSet & AllocateExistingShard --> InitiateDealing["Initiate Dealing"]
-    InitiateDealing --> DealersInitiate["Dealers Initiate Share Requests"]
+    SourceOperatorSet & AllocateExistingShard --> Shard["Shard"]
+    Shard --> Participant["Nuffle Shard Participant"]
+    InitiateDealing["Initiate Dealing"] --> DealersInitiate["Dealers Initiate Share Requests"]
     DealersInitiate --> DealerShareRequest
+    
+    %% Operator registration
+    Participant --> IsDealer{"Is Dealer?"}
+    IsDealer -->|Yes| InitiateDealing
+    IsDealer -->|No| AsyncExecution
+    
     
     %% Async Binary Execution
     subgraph AsyncExecution [Asynchronous Binary Execution]
         direction TB
-        DealersInitiate -.-> |Async| ExecuteBinary["Dealers Execute Binary"]
+        DealersInitiate -.-> |Async| ExecuteBinary["Participants Execute Binary"]
         ExecuteBinary -.-> |Continuously| GenerateProofs["Generate Proofs"]
     end
     
     %% Blockchain and Contract interactions
-    DeployContract["Deploy Adapter Contract"] -- |If First Deployment| --> chain["Platform Blockchain"]
+    InitiateDealing --> AdapterCheck{"Adapter Deployed?"}
+    AdapterCheck -->|No| DeployContract["Deploy Adapter Contract"]
+    AdapterCheck -->|Yes| UseExistingContract["Use Existing Contract"]
+    DeployContract & UseExistingContract --> chain["Platform Blockchain"]
     chain --> contract["Contract"]
-    
-    %% Operator registration
-    Operator["Operator"] ---->|Registers| SourceOperatorSet
-    contract --> RegisterOperator["Register as Operator"]
     
     %% Validation and Signature process
     subgraph ValidationProcess [Validation and Sharing Process]
@@ -103,7 +109,6 @@ flowchart TD
         ValidateRequest --> |If Valid| SignBroadcast["Sign and Broadcast Sharing"]
         SignBroadcast --> CombineSignature["Combine Signature Locally"]
         CombineSignature --> BroadcastSignature["Broadcast Signature"]
-        BroadcastSignature --> DeployContract
     end
     
     BroadcastSignature --> contract
@@ -112,9 +117,12 @@ flowchart TD
     DelegatorsDelegate["Delegators Delegate Stake"] -->|Delegate to operator| contract
     
     %% Final steps
-    contract -- Pass signature --> ApplicationVerifier["Application Verifier Handles Logic"]
-    RegisterOperator --> ApplicationVerifier
-    ApplicationVerifier --> End(("End"))
+    contract --> ApplicationVerifier["Application Verifier Handles Logic"]
+    ApplicationVerifier --> VerifySignature{"Signature Valid?"}
+    VerifySignature -->|Yes| ExecuteLogic["Execute Application Logic"]
+    VerifySignature -->|No| InitiateSlashing["Initiate Slashing Event"]
+    ExecuteLogic --> End(("End"))
+    InitiateSlashing --> End
     
     %% Styling
     classDef process fill:#f9f,stroke:#333,stroke-width:2px;
@@ -122,8 +130,8 @@ flowchart TD
     classDef start_end fill:#98FB98,stroke:#333,stroke-width:2px;
     classDef async fill:#87CEFA,stroke:#333,stroke-width:2px;
     class Start,End start_end;
-    class NewShard decision;
-    class ProvideBinary,ConfigureStrategy,SubmitConfiguration,ShardAllocation,InitiateDealing,DeployContract process;
+    class NewShard,IsDealer,AdapterCheck,OperatorRegistration,VerifySignature,DelegationTiming decision;
+    class ProvideBinary,ConfigureStrategy,SubmitConfiguration,ShardAllocation,InitiateDealing,DeployContract,ApplicationVerifier,DelegatorsDelegate process;
     class ExecuteBinary,GenerateProofs async;
 ```
 > TODO: flow chart
