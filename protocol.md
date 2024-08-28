@@ -143,7 +143,7 @@ The applications resolved to a shard to create an operator set or append to an e
 Now, an application has been allocated a shard, and operators have decided to support it: 
 - If the shard is new: 
     - The protocol initiates a dealing 
-    - Sources an operator set or instructs guardians to support the Application.Applicationardian details here for later discussion.
+    - Sources an operator set or instructs guardians to support the Application. Guardian details are omitted here for later discussion.
     - Initiates a deployment of a contract (this might change if 1:- or 1:1)
 - If the shard is not new: 
     - The protocol allocates the application Applications.
@@ -164,7 +164,7 @@ A naive approach could be to use the wrapped asset that is socially agreed to be
 The problem with such an approach is that there are new trust assumptions on the custodian of the wrapped asset, and there is no real ownership of the underlying asset.
 
 This is the benefit of the Nuff Protocol. It keeps the underlying asset in the custody of the native chain. It introduces a critical `right to slash` mechanism where the asset can only be unlocked under the following invariants:
-- the staker initiated a signal to withdraw and the withdrawal period surpassed
+- the staker initiated a signal to withdraw, and the withdrawal period surpassed
 - the canonical fork has signalled an event to slash the user, and proof has been provided to the platform
 
 Now, since the native asset can be represented on the native chain, the projection can be any asset that the platform understands, as long as there is an agreed-upon price oracle that the Application accepts. It could also apply weights based on the oracle selected.
@@ -181,8 +181,8 @@ Each event is natively settled on the restaking platform.
 
 For rewards, the platform distributes based on the blockchain it chooses as its base. In greenfield nuff-aware systems, it can follow the strategy's dynamic fork choice while rewarding according to the strategy's semantics.
 
-There are variations of settlement based on:
-- An application hard selects a canonical base: the canonical slashing event and rewards are passed down as a message to the follower restaking platform. The example below is EigenLayer, which is the canonical reward/slashing accounting restaking platform, and Restaking B, which follows the canonical decisions as a follower.
+There are variations of settlement based on the following:
+- An application hard selects a canonical base: the canonical slashing event and rewards are passed down as a message to the follower restaking platform. The example below is EigenLayer, the canonical reward/slashing accounting restaking platform, and Restaking B, which follows the canonical decisions as a follower.
 An important trustless component of this system is the Relayer. Any system observer who witnesses a slashing or reward event can provide an inclusion proof (or a zero-knowledge proof based on verification logic in the follower contract) of the event on the Ethereum network to the follower restaking platform.
 
 ### Right-to-slash
