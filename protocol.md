@@ -7,14 +7,14 @@ Here we outline some details of the protocol.
 The Nuff Protocol leverages the current state-of-the-art threshold signature protocol[^harts]. 
 
 the following properties that enable the Nuff Protocol:
-- Adaptable Signatures: Since the protocol outputs Schnorr signatures, these can be adapted and cheaply verified without the need for any specific precompiles in the underlying chain, this is an improved benefit over any pairing based signature.
+- Adaptable Signatures: Since the protocol outputs Schnorr signatures, these can be adapted and cheaply verified without the need for any specific precompiles in the underlying chain, this is an improved benefit over any pairing-based signature.
 - Adaptively secure: HARTS remains fully secure and operational up to `\(t_{c} < n/3\)` malicious parties. 
 - Efficient: HARTS outputs a Schnorr signature of size $\lambda$ with a near-optimal amortized communication cost of $O\left(\lambda n^{2} \log n\right)$ bits and $O(1)$ rounds per signature. This means that dealing shares is amortized and that the signing round is constant. The arrangement of nonce shares happen offline once retrieved.
 - Robustness: HARTS ensures guaranteed output delivery, even in asynchronous conditions.
 - Internal agreement protocol: HARTS internally uses a VABA to agree on the dealers of the system. We can extend this VABA to agree on the message to be signed to protect the assets further.
 
 
-> For the devnet, we have not yet decided on a curve for the signature, it would be useful to have a curve that is FFT-Friendly, although for now we are going to use `secp256k1` as we build out the protocol and decide on an FFT-Friendly curve when we introduce them. We can also explore EC-FFT.
+> For the devnet, we have not yet decided on a curve for the signature, it would be useful to have a curve that is FFT-Friendly, although, for now, we are going to use `secp256k1` as we build out the protocol and decide on an FFT-Friendly curve when we introduce them. We can also explore EC-FFT.
 
 > Furthermore, we are yet to decide on the following ideal parameters:
 - `n`: number of parties 
@@ -22,9 +22,9 @@ the following properties that enable the Nuff Protocol:
 
 ### Adapter 
 
-The signing protocol outputs a schnorr signature, for this reason it is not compatible all underlying chains natively. 
+The signing protocol outputs a schnorr signature, for this reason, it is not compatible with all underlying chains natively.
 Most chains use either secp256k1 or ed25519 for signing transactions.
-To address this we introduce a ERC-4337[^4337] aware adaptor contract to the ethereum related chains. 
+To address this, we introduce an ERC-4337[^4337] aware adaptor contract to the ethereum related chains. 
 
 The Adaptor contract has the following responsibilities:
 - Verify the Schnorr signature output by the TSS protocol.
@@ -32,7 +32,7 @@ The Adaptor contract has the following responsibilities:
 
 For adapting signatures on non-EVM chains, we will use something along the same approach with a generic WASM smart contract. 
 This should cover the majority of use cases along NEAR, Cosmos, Arbitrum and Polkadot with minor adaptations for SDKs. 
-Although challenges may arise since restaking platforms might be built on chains without smart-contract capabilities. For that we would likely adapt the scheme as needed.
+Although challenges may arise since restaking platforms might be built on chains without smart-contract capabilities. For that, we would likely adapt the scheme as needed.
 
 It is not decided whether the Adaptor contract should have a many-to-one relationship with a shard or a one-to-one.
 See the discussion around shards in the [sharding](sharding.md) section.
@@ -136,7 +136,7 @@ flowchart TD
 ```
 > TODO: flow chart
 
-The properties of the application resolves them to a shard to either create an operator set or if the likeness properties allow, to append to an existing shard. This allows operators to support applications in a capital efficient but fair way, as well as allowing applications which have similar properties to share the stake adaptively.
+The properties of the application resolves them to a shard to either create an operator set, or if the likeness properties allow, to append to an existing shard. This allows operators to support applications in a capital efficient but fair way, as well as allowing applications which have similar properties to share the stake adaptively.
 
 > TODO: explain examples of likeness properties.
 
@@ -150,7 +150,7 @@ Now an application has been allocated a shard and operators have decided to supp
 - Based on the allocated shard, the protocol signs a registers transaction and registers as an operator with the restaking platforms for the application.
 - Delegators who wish to stake with the created shard delegate their stake to the operator. And notify Nuff Protocol of the delegation.
 - The operators now execute the application blueprint, and the dealers of the protocol initiate share requests as per the application configurations. 
-- Upon share requests, the participants agree on the validity of the message by applying the validation rules. If they agree they will sign and broadcast their sharing.
+Upon share requests, the participants agree on the validity of the message by applying the validation rules. If they agree, they will sign and broadcast their sharing.
 - If the sharing gets `\(t_{r} + 1\)` partial signatures, the protocol can combine the signature locally.
 - Once a signature is combined, it can be broadcasted to the restaking platforms.
 - The Application verifier can verify the signature and handle its logic as normal.
@@ -177,7 +177,7 @@ Now, since the native asset can be represented on the native chain, the projecti
 ### Settlement Events
 
 Settlement events are accounted for the shareholders in the shard by a public bulletin involved in the network and witnessable by the storage component. 
-Participants involved in the attestation are therefore publically bound to any signature share they provided. 
+Participants involved in the attestation are therefore publicly bound to any signature share they provided.
 Each event is natively settled on the restaking platform.
 
 For rewards, the platform distributes based on the blockchain it chooses it's base, or in the greenfield nuff-aware systems, it can follow the dynamic fork-choice of the strategy while rewarding according to the semantics of the strategy.
@@ -207,7 +207,7 @@ With a light client wallet, any user who is using the nuff protocol can also be 
 
 ### Prices
 
-An application decides the prices and weights to the underlying assets. If an external native asset is introduces, the application must agree on an oracle to get the price for the asset, it might be acceptable in some use cases to accept the wrapped price for the purpose of security.
+An application decides the prices and weights to the underlying assets. If an external native asset is introduced, the application must agree on an oracle to get the price for the asset, it might be acceptable in some use cases to accept the wrapped price for the purpose of security.
 
 # Storage
 The Nuff Protocol does not require an execution client, as it only needs to immutably and verifiably store configurations and retrieve them when necessary. The storage solution should be low-cost, high-performance, and resistant to corruption.
