@@ -12,7 +12,7 @@ The strategy defines how a collection of assets are allocated. This definition d
 
 ### Likeness
 
-The likness is simply a measure showing how similar are two entities: one that has assets to allocate, and another that needs assets to operate. We use the concept of likeness to match both sides of the strategy. 
+The likeness is simply a measure showing how similar are two entities: one that has assets to allocate, and another that needs assets to operate. We use the concept of likeness to match both sides of the strategy. 
 
 ## Summary
 
